@@ -1,8 +1,8 @@
 # Requisitos
 
-## Não relacional
+## Bancos de dados
 
-Requisitos:
+### Requisitos do banco não relacional
 
 - localização (GPS)
 - giroscópio (aceleração, velocidade e direção)
@@ -17,7 +17,7 @@ Requisitos:
 - status da conectividade
 - dados da via
 
-## Relacional
+### Requisitos do banco relacional
 
 Requisitos:
 
