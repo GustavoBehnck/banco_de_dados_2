@@ -1,11 +1,8 @@
 # Requisitos
 
-## Bancos de dados
-
-### Requisitos do banco não relacional
+## Banco não relacional
 
 - localização (GPS)
-- giroscópio (aceleração, velocidade e direção)
 - temperatura dos componentes internos
 - consumo de energia dos componentes
 - bateria (tensão, corrente, vida útil)
@@ -13,16 +10,19 @@
 - odômetro
 - sensor de impacto
 - sensor de proximidade
-- dados dos atuadores (freio, motor etc.)
+- dados dos atuadores (freio, motor, pressão das rodas etc.)
 - status da conectividade
 - dados da via
 
-### Requisitos do banco relacional
+
+## Banco relacional
 
 Requisitos:
 
 - ID do veículo autônomo
 - data de fabricação
 - chassi
+- Marca
 - dados do dono
+- serviço (Oque está levando)
 - log de manutenção
