@@ -34,6 +34,7 @@
 | ----------- | --------------------------------------------------- | -------- | --- | --------------- | --------- | ------- |
 | id          | int                                                 | yes      | yes | no              | yes       | yes     |
 | status      | ENUM("in use","ready","decommissioned","not ready") | yes      | no  | no              | no        | no      |
+| chassis     | VARCHAR                                             | yes      | no  | no              | no        | no      |
 | observation | VARCHAR                                             | no       | no  | no              | no        | no      |
 | model       | int                                                 | yes      | no  | yes -> model.id | no        | no      |
 | created_at  | TIMESTEMP                                           | yes      | no  | no              | no        | no      |
@@ -57,13 +58,27 @@
 
 ### `maintenances`
 
+| Columna        | Tipo      | NotNull? | PK? | FK? | AutIncre? | unique? |
+| -------------- | --------- | -------- | --- | --- | --------- | ------- |
+| id             | int       | yes      | yes | no  | yes       | yes     |
+| date           | TIMESTEMP | yes      | no  | no  | no        | no      |
+| reason         | VARCHAR   | yes      | no  | no  | no        | no      |
+| link_to_ticket | VARCHAR   | yes      | no  | no  | no        | no      |
+| created_at     | TIMESTEMP | yes      | no  | no  | no        | no      |
+| updated_at     | TIMESTEMP | yes      | no  | no  | no        | no      |
+
 ### `model`
 
-
-| Columna | Tipo                                     | NotNull? | PK? | FK? | AutIncre? | unique? |
-| ------- | ---------------------------------------- | -------- | --- | --- | --------- | ------- |
-| id      | int                                      | yes      | yes | no  | yes       | yes     |
-| types   | ENUM("planting","spraying","harvesting") | yes      | no  | no  | no        | no      |
+| Columna          | Tipo                                     | NotNull? | PK? | FK? | AutIncre? | unique? |
+| ---------------- | ---------------------------------------- | -------- | --- | --- | --------- | ------- |
+| id               | int                                      | yes      | yes | no  | yes       | yes     |
+| types            | ENUM("planting","spraying","harvesting") | yes      | no  | no  | no        | no      |
+| batery_capacity  | float                                    | yes      | no  | no  | no        | no      |
+| fabrication_year | int                                      | yes      | no  | no  | no        | no      |
+| batery_capacity  | float                                    | yes      | no  | no  | no        | no      |
+| charging_time    | float                                    | yes      | no  | no  | no        | no      |
+| created_at       | TIMESTEMP                                | yes      | no  | no  | no        | no      |
+| updated_at       | TIMESTEMP                                | yes      | no  | no  | no        | no      |
 
 ## Banco **Não** Relacional (InfluxDB)
 
