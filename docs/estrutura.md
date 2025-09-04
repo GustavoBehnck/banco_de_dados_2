@@ -2,6 +2,22 @@
 
 ## Banco Relacional (MySql)
 
+# Database Schema Flowchart
+
+```mermaid
+erDiagram
+    clients ||--o{ farms : "has"
+    clients ||--o{ contracts : "signs"
+
+    models ||--o{ vehicles : "is model of"
+
+    contracts }o--|| vehicles_contracted : "lists"
+    vehicles }o--|| vehicles_contracted : "is listed in"
+
+    vehicles ||--o{ jobs_log : "has"
+    vehicles ||--o{ maintenances : "undergoes"
+```
+
 ### `clients`
 
 | Column       | Type                                  | NotNull? | PK? | FK? | AutIncre? | Unique? |
@@ -84,9 +100,10 @@
 | id            | int       | yes      | yes | no                | yes       | yes     |
 | vehile_id     | int       | yes      | no  | yes -> vehicle.id | no        | no      |
 | started_date  | TIMESTAMP | yes      | no  | no                | no        | no      |
-| finished_date | TIMESTAMP | no       | no  | no                | no        | no      |
+| finished_date | TIMESTAMP | yes      | no  | no                | no        | no      |
 | observation   | TEXT      | no       | no  | no                | no        | no      |
-
+| created_at    | TIMESTAMP | yes      | no  | no                | no        | no      |
+| updated_at    | TIMESTAMP | yes      | no  | no                | no        | no      |
 
 ### `maintenances`
 
