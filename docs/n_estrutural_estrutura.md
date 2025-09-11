@@ -1,4 +1,4 @@
-# Banco Não Relacional (InfluxDB)
+# Banco Não Relacional (ClickHouse/graphite)
 
 
 ## tables
