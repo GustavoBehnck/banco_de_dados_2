@@ -1,8 +1,6 @@
-# Estrutura dos Bancos
+# Banco Relacional (MySql)
 
-## Banco Relacional (MySql)
-
-# Database Schema Flowchart
+## Database Schema Flowchart
 
 ```mermaid
 erDiagram
@@ -17,6 +15,8 @@ erDiagram
     vehicles ||--o{ jobs_log : "has"
     vehicles ||--o{ maintenances : "undergoes"
 ```
+
+## Tabelas
 
 ### `clients`
 
