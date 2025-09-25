@@ -6,6 +6,10 @@ Em específico, sobre tratores agrículos
 
 ## Sinopse
 
+Nossa compania `Grão Master (Case II)` nos especializamos em tratores agrículos autônomos desde 2035...
+
+![tractor_image](./docs/images/interestelar%20tractor.webp)
+
 ## Integrantes
 
 - Gustavo Behnck Cardoso
