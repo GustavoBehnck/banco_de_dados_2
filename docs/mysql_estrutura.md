@@ -4,6 +4,88 @@
 
 ```mermaid
 erDiagram
+    clients {
+        int id PK
+        VARCHAR cnpj "Unique"
+        ENUM status
+        VARCHAR trade_name
+        VARCHAR company_name "Unique"
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    farms {
+        int id PK
+        VARCHAR name
+        int client_id FK
+        VARCHAR cep
+        VARCHAR address
+        float area
+        ENUM status
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    contracts {
+        int id PK
+        TEXT lease_deed
+        int client_id FK
+        boolean status
+        TIMESTAMP start_date
+        TIMESTAMP end_date
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    models {
+        int id PK
+        ENUM types
+        float batery_capacity
+        int fabrication_year
+        float charging_time
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    vehicles {
+        int id PK
+        ENUM status
+        VARCHAR chassis
+        TEXT observation
+        int model_id FK
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    vehicles_contracted {
+        int id PK
+        int contract_id FK
+        int vehicle_id FK
+        TEXT observation
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    jobs_log {
+        int id PK
+        int vehicle_id FK
+        TIMESTAMP started_date
+        TIMESTAMP finished_date
+        TEXT observation
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    maintenances {
+        int id PK
+        int vehicle_id FK
+        TIMESTAMP date
+        TEXT reason
+        TEXT link_to_ticket
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
     clients ||--o{ farms : "has"
     clients ||--o{ contracts : "signs"
 
@@ -116,8 +198,4 @@ erDiagram
 | link_to_ticket | TEXT      | yes      | no  | no                | no        | no      |
 | created_at     | TIMESTAMP | yes      | no  | no                | no        | no      |
 | updated_at     | TIMESTAMP | yes      | no  | no                | no        | no      |
-
-
-## Banco **Não** Relacional (InfluxDB)
-
 
