@@ -52,7 +52,7 @@ erDiagram
         ENUM status
         VARCHAR chassis
         TEXT observation
-        int model_id FK
+        int model FK
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
