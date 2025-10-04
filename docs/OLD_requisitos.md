@@ -1,4 +1,5 @@
 # Requisitos
+
 - [Requisitos](#requisitos)
   - [Objetivo](#objetivo)
   - [Perguntas a serem respondidas através da interface](#perguntas-a-serem-respondidas-através-da-interface)
@@ -38,7 +39,6 @@ Adicionalmente, serão armazenados dados de negócio, que serão correlacionados
 - dados dos atuadores (freio, motor, pressão das rodas etc.)
 - status da conectividade
 - dados da via
-
 
 ### Banco relacional (Dados de Negócio)
 

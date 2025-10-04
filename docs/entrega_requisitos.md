@@ -6,9 +6,8 @@
     - [Requisitos Funcionais](#requisitos-funcionais)
     - [Requisitos não Funcionais](#requisitos-não-funcionais)
   - [Escopo do Projeto](#escopo-do-projeto)
-  - [Requisitos Funcionais:](#requisitos-funcionais-1)
-  - [Requisitos Não Funcionais:](#requisitos-não-funcionais-1)
-
+  - [Requisitos Funcionais](#requisitos-funcionais-1)
+  - [Requisitos Não Funcionais](#requisitos-não-funcionais-1)
 
 ## Introdução (Sinopse)
 
@@ -43,7 +42,7 @@ O outro foco dos `Tratores Grão Mestre` é evitar o trabalho desnecessário por
   - Métricas de estado do veículo (sensores, cargas, GPS)
   - Métricas da via (temperatura, umidade, luminosidade)
 
-## Requisitos Funcionais:
+## Requisitos Funcionais
 
 O sistema deverá ter os recursos necessários para responder as seguintes perguntas:
 
@@ -56,11 +55,10 @@ O sistema deverá ter os recursos necessários para responder as seguintes pergu
 7. Qual a média de quedas da conectividade dos tratores por mês?
 8. Quais tipos de via acarretam mais manutenções?
 
+## Requisitos Não Funcionais
 
-## Requisitos Não Funcionais:
-
-9. O tempo de resposta de qualquer consulta não deverá passar de 4 segundos para grandes volumes de dados
-10. O InfluxDB deve suportar inserção de pelo menos 50.000 novos registros por segundo.
-11. O InfluxDB deverá aceitar dados retroativos caso o trator fique sem sinal
-12. A interação entre ambos os bancos deve ser invisível ao usuário
-13. Todos dados como senha deverão ser "hashados", não sendo possível visualizar corretamente seu valor pelo banco
+1. O tempo de resposta de qualquer consulta não deverá passar de 4 segundos para grandes volumes de dados
+2. O InfluxDB deve suportar inserção de pelo menos 50.000 novos registros por segundo.
+3. O InfluxDB deverá aceitar dados retroativos caso o trator fique sem sinal
+4. A interação entre ambos os bancos deve ser invisível ao usuário
+5. Todos dados como senha deverão ser "hashados", não sendo possível visualizar corretamente seu valor pelo banco

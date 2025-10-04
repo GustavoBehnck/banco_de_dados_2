@@ -1,7 +1,6 @@
 # Banco Não Relacional (InfluxDB 2)
 
-
-## Como o Influx estrutura seu dados?!
+## Como o Influx estrutura seu dados?
 
 Esse são exemplos de como o Influx estrutura seus dados em forma de colunas:
 
@@ -12,6 +11,7 @@ waterQualitySensor,sensorId=W0101,station=Harbor pH=6.1,temperature=16.103 14725
 ```
 
 Eles são separados em 4 partes:
+
 - **`measurement`** - A "tabela" (primeiro dado da linha)
 - **`tags`** - "Colunas" de características, normalmente strings (Próximos valores separados por vírgulas)
 - **`fields`** - "Colunas" de dados, serão os dados medidos (Semarados por um espaço das `tags` e dividido por vírgulas entre sí)

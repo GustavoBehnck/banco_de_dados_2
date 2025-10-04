@@ -198,4 +198,3 @@ erDiagram
 | link_to_ticket | TEXT      | yes      | no  | no                | no        | no      |
 | created_at     | TIMESTAMP | yes      | no  | no                | no        | no      |
 | updated_at     | TIMESTAMP | yes      | no  | no                | no        | no      |
-

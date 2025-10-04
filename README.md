@@ -19,9 +19,8 @@ O outro foco dos `Tratores Grão Mestre` é evitar o trabalho desnecessário por
 - Gustavo Behnck Cardoso
   - RA: `02310735`
 - Mateus Takamatsu
-    - RA: `023...`
+  - RA: `02310341`
 - Flávio Monteiro
-    - RA: `023...`
+  - RA: `02310091`
 - João Vichoviski
-    - RA: `023...`
-  
+  - RA: `023...`
