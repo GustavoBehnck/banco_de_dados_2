@@ -31,6 +31,7 @@ O outro foco dos `Tratores Grão Mestre` é evitar o trabalho desnecessário por
 
 - O sistema deve ser responsivo, nada acima de 4 segundos de tempo de espera das queries é aceitável
 - Para o usuário, não deverá transparecer o uso de dois banco de dados separados. A integração entre ambos não deve conter atrito
+- Toda a parte de login e autenticação será lidada pelo framework do Django, não sendo necessário uma implementação direta no banco
 
 ## Escopo do Projeto
 
@@ -62,3 +63,4 @@ O sistema deverá ter os recursos necessários para responder as seguintes pergu
 10. O InfluxDB deve suportar inserção de pelo menos 50.000 novos registros por segundo.
 11. O InfluxDB deverá aceitar dados retroativos caso o trator fique sem sinal
 12. A interação entre ambos os bancos deve ser invisível ao usuário
+13. Todos dados como senha deverão ser "hashados", não sendo possível visualizar corretamente seu valor pelo banco
