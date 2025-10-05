@@ -5,11 +5,26 @@ from .models import (
 )
 
 
+# --- Inlines ---
+class FarmInline(admin.TabularInline):
+    model = Farm
+    extra = 1  # Number of empty forms to display
+    fields = ('name', 'cep', 'address', 'area', 'status')
+
+
+class VehicleContractInline(admin.TabularInline):
+    model = VehicleContract
+    extra = 1
+    fields = ('vehicle', 'observation')
+
+
+# --- Admin Classes ---
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('trade_name', 'company_name', 'cnpj', 'status', 'created_at', 'updated_at')
     list_filter = ('status',)
     search_fields = ('trade_name', 'company_name', 'cnpj')
+    inlines = [FarmInline]  # Inline editing for farms
 
 
 @admin.register(Farm)
@@ -38,6 +53,7 @@ class ContractAdmin(admin.ModelAdmin):
     list_display = ('id', 'client', 'status', 'start_date', 'end_date', 'created_at', 'updated_at')
     list_filter = ('status', 'client')
     search_fields = ('client__trade_name',)
+    inlines = [VehicleContractInline]  # Inline editing for vehicle contracts
 
 
 @admin.register(VehicleContract)
