@@ -47,18 +47,18 @@ class Farm(models.Model):
         return "self.name"
 
 
-class Model(models.Model):
+class VehicleModel(models.Model):
     """
     Modelos de veículos
     """
     MODEL_CHOICES = [
-        ('planting', 'planting'),
-        ('spraying', 'Spraying'),
-        ('harvesting', 'Harvesting'),
+        ('planting', 'Semeadora'),
+        ('spraying', 'Pulverizador'),
+        ('harvesting', 'Colheitadora'),
     ]
 
     id = models.AutoField(primary_key=True)
-    type = models.CharField(max_length=20,choices=MODEL_CHOICES)
+    type = models.CharField(max_length=20,choices=MODEL_CHOICES, verbose_name="Tipo")
     battery_capacity = models.FloatField(verbose_name="Capacidade da bateria (Wh)") # TODO revisit this
     fabrication_year = models.IntegerField(verbose_name="Ano do modelo")
     charging_time = models.FloatField(verbose_name="Tempo de recarga (h)", help_text="Tempo para completar um ciclo de carregamento, em horas")

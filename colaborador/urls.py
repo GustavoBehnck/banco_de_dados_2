@@ -23,4 +23,5 @@ from . import views
 urlpatterns = [
     path("", views.home, name="colaborador_home"),
     path("clientes/cadastrar", views.new_client, name="colaborador_new_client"),
+    path("veiculos/modelos/cadastrar", views.new_vehicle_model, name="colaborador_new_vehicle_model"),
 ]
