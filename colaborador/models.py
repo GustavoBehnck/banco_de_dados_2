@@ -4,9 +4,9 @@ from django.db import models
 
 class Client(models.Model):
     STATUS_CHOICES = [
-        ('active', 'Active'),
-        ('inactive', 'Inactive'),
-        ('suspended', 'Suspended'),
+        ('active', 'Ativa'),
+        ('inactive', 'Inative'),
+        ('suspended', 'Suspensa'),
     ]
 
     cnpj = models.CharField(max_length=255, unique=True, verbose_name="CNPJ")
@@ -25,9 +25,9 @@ class Client(models.Model):
 
 class Farm(models.Model):
     STATUS_CHOICES = [
-        ('active', 'Active'),
-        ('inactive', 'Inactive'),
-        ('suspended', 'Suspended'),
+        ('active', 'Ativa'),
+        ('inactive', 'Inativa'),
+        ('suspended', 'Suspensa'),
     ]
 
     name = models.CharField(max_length=255, verbose_name="Nome da fazenda")
@@ -51,13 +51,13 @@ class VehicleModel(models.Model):
     Modelos de veículos
     """
     MODEL_CHOICES = [
-        ('planting', 'Semeadora'),
-        ('spraying', 'Pulverizador'),
-        ('harvesting', 'Colheitadora'),
+        ('seeder', 'Semeadora'),
+        ('sprayer', 'Pulverizador'),
+        ('harvester', 'Colheitadora'),
     ]
 
     type = models.CharField(max_length=20,choices=MODEL_CHOICES, verbose_name="Tipo")
-    battery_capacity = models.FloatField(verbose_name="Capacidade da bateria (Wh)") # TODO revisit this
+    battery_capacity = models.FloatField(verbose_name="Capacidade da bateria (kWh)") # TODO revisit this
     fabrication_year = models.IntegerField(verbose_name="Ano do modelo")
     charging_time = models.FloatField(verbose_name="Tempo de recarga (h)", help_text="Tempo para completar um ciclo de carregamento, em horas")
     created_at = models.DateTimeField(auto_now_add=True)
