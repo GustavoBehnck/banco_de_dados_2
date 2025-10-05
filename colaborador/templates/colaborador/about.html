@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Sobre Nós - Grão-mestre Tratores{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h1 class="text-success mb-4">Sobre a Grão-mestre Tratores</h1>
+    <p>
+      A <strong>Grão-mestre Tratores</strong> nasceu da paixão pelo campo e pela tecnologia.
+      Nosso propósito é oferecer máquinas e soluções que aumentem a produtividade e reduzam o impacto ambiental.
+    </p>
+    <p>
+      Com anos de experiência no mercado, somos reconhecidos pela confiabilidade e qualidade
+      dos nossos tratores, implementos e suporte técnico especializado.
+    </p>
+    <p>
+      Nosso compromisso é estar ao lado do produtor rural em todas as etapas — do preparo do solo à colheita.
+    </p>
+
+    <div class="mt-5">
+      <h3 class="text-success">Nossos Valores</h3>
+      <ul class="list-group list-group-flush mt-3">
+        <li class="list-group-item">🌱 Sustentabilidade no agronegócio</li>
+        <li class="list-group-item">🤝 Parceria com o produtor</li>
+        <li class="list-group-item">⚙️ Inovação e eficiência</li>
+        <li class="list-group-item">💬 Transparência e confiança</li>
+      </ul>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{% url 'contact' %}" class="btn btn-success btn-lg">Entre em contato conosco</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
