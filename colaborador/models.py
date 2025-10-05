@@ -148,7 +148,7 @@ class Maintenance(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='maintenances', verbose_name="Veículo")
     date = models.DateTimeField(verbose_name="Data de manutenção")
     reason = models.TextField(verbose_name="Justificativa")
-    link_to_ticket = models.TextField(blank=True, null=True, verbose_name="Link do ticket", help_text="Esse é o ID do ticket no ServiceNow")
+    link_to_ticket = models.CharField(max_length=1024, blank=True, null=True, verbose_name="Link do ticket", help_text="Esse é o ID do ticket no ServiceNow")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
