@@ -21,5 +21,7 @@ from django.urls import include, path
 from colaborador import views
 
 urlpatterns = [
-    path("", views.index),
+    path("", views.index, name="home"),
+    path("sobre/", views.about, name="about"),
+    path("contato/", views.contact, name="contact"),
 ]

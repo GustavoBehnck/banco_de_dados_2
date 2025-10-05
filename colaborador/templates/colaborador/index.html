@@ -1,71 +1,72 @@
-{% extends 'colaborador/template.html' %}
-{% block content %}
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
+{% block title %}Grão-mestre Tratores{% endblock %}
+
+{% block content %}
 <!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-    <h1>Força e tecnologia no campo</h1>
-    <p>Tratores potentes e sustentáveis para impulsionar sua colheita.</p>
+<section class="hero text-center text-white" style="background: linear-gradient(rgba(53,94,59,0.6),rgba(53,94,59,0.6)), url('https://images.unsplash.com/photo-1600415425861-e7e5a7cd5c91?auto=format&fit=crop&w=1350&q=80') center/cover; padding:100px 20px;">
+  <div class="container">
+    <h1 class="display-5 fw-bold">Força e tecnologia no campo</h1>
+    <p class="lead">Tratores potentes e sustentáveis para impulsionar sua colheita.</p>
     <a href="#contact" class="btn btn-warning mt-4 px-4 py-2">Fale Conosco</a>
-    </div>
+  </div>
 </section>
 
 <!-- About Section -->
-<section class="about">
-    <div class="container text-center">
-    <h2>Quem Somos</h2>
+<section class="about py-5">
+  <div class="container text-center">
+    <h2 class="text-success">Quem Somos</h2>
     <p class="mt-3 mb-5">
-        A <strong>Grão-mestre Tratores</strong> é referência em soluções agrícolas de alta performance.
-        Trabalhamos com inovação, qualidade e compromisso com o produtor rural.
+      A <strong>Grão-mestre Tratores</strong> é referência em soluções agrícolas de alta performance.
+      Trabalhamos com inovação, qualidade e compromisso com o produtor rural.
     </p>
     <div class="row">
-        <div class="col-md-4">
+      <div class="col-md-4 mb-3">
         <div class="card shadow-sm border-0">
-            <div class="card-body">
+          <div class="card-body">
             <h5 class="card-title text-success">Tecnologia</h5>
-            <p class="card-text">Equipamentos modernos e eficientes para maximizar sua produtividade.</p>
-            </div>
+            <p>Equipamentos modernos e eficientes para maximizar sua produtividade.</p>
+          </div>
         </div>
-        </div>
-        <div class="col-md-4">
+      </div>
+      <div class="col-md-4 mb-3">
         <div class="card shadow-sm border-0">
-            <div class="card-body">
+          <div class="card-body">
             <h5 class="card-title text-success">Sustentabilidade</h5>
-            <p class="card-text">Compromisso com o meio ambiente e com o futuro do agronegócio.</p>
-            </div>
+            <p>Compromisso com o meio ambiente e com o futuro do agronegócio.</p>
+          </div>
         </div>
-        </div>
-        <div class="col-md-4">
+      </div>
+      <div class="col-md-4 mb-3">
         <div class="card shadow-sm border-0">
-            <div class="card-body">
+          <div class="card-body">
             <h5 class="card-title text-success">Suporte</h5>
-            <p class="card-text">Atendimento especializado e suporte técnico em todo o Brasil.</p>
-            </div>
+            <p>Atendimento especializado e suporte técnico em todo o Brasil.</p>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </section>
 
 <!-- Contact Section -->
-<section class="contact-section" id="contact">
-    <div class="container">
-    <h2 class="text-center mb-4">Entre em Contato</h2>
+<section class="contact-section py-5" id="contact" style="background-color: #eaf4e0;">
+  <div class="container">
+    <h2 class="text-center text-success mb-4">Entre em Contato</h2>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+      <div class="col-md-8">
         <div class="card shadow border-0">
-            <div class="card-body p-4">
-            {% load crispy_forms_tags %}
+          <div class="card-body p-4">
             <form method="post">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-success mt-3 w-100">Enviar</button>
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type="submit" class="btn btn-success mt-3 w-100">Enviar</button>
             </form>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </section>
-
 {% endblock %}

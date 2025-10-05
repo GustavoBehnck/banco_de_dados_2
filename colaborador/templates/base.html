@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>{% block title %}Grão-mestre Tratores{% endblock %}</title>
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f8f3;
+        color: #2e3d27;
+      }
+      .navbar {
+        background-color: #355e3b;
+      }
+      .navbar-brand, .nav-link {
+        color: #fdfaf6 !important;
+      }
+      .navbar-brand:hover, .nav-link:hover {
+        color: #e3d985 !important;
+      }
+      footer {
+        background-color: #355e3b;
+        color: #fdfaf6;
+        text-align: center;
+        padding: 20px 0;
+      }
+      footer a {
+        color: #e3d985;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Grão-mestre Tratores</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Grão-mestre Tratores | Desenvolvido com ❤️ para o campo</p>
+        <p><a href="#">Política de Privacidade</a></p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
