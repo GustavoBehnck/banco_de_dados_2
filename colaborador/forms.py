@@ -2,6 +2,8 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Row, Column
 
+from .models import Client
+
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
     email = forms.EmailField()
@@ -19,3 +21,14 @@ class ContactForm(forms.Form):
             'message',
             Submit('submit', 'Send Message', css_class='btn btn-primary')
         )
+
+
+class NewClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['cnpj', 'trade_name', 'company_name']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'

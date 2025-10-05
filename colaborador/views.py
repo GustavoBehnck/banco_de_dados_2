@@ -1,4 +1,11 @@
 from django.shortcuts import render
 
-def cadastrar_modelo(request):
-    return render(request, "colaborador/cadastrar_modelo.html")
+from colaborador.forms import NewClientForm
+
+def home(request):
+    return render(request, "colaborador/home.html")
+
+
+def new_client(request):
+    form = NewClientForm()
+    return render(request, "colaborador/cadastrar_cliente.html", {"form": form})

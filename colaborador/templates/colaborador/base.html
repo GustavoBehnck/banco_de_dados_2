@@ -45,7 +45,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">Grão-mestre Tratores (colaborador)</a>
+        <a class="navbar-brand" href="{% url 'colaborador_home' %}">Grão-mestre Tratores (colaborador)</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,7 +55,7 @@
               <a class="nav-link dropdown-toggle" id="clientesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'about' %}">Clientes</a>
               <ul class="dropdown-menu" aria-labelledby="contratosDropdown">
                 <li><a class="dropdown-item" href="">Lista de clientes</a></li>
-                <li><a class="dropdown-item" href="">Cadastrar cliente</a></li>
+                <li><a class="dropdown-item" href="{% url 'colaborador_new_client' %}">Cadastrar cliente</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -95,7 +95,7 @@
                 <li><a class="dropdown-item" href="">Configurações</a></li>
               </ul>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+            <li class="nav-item"><a href="{% url 'colaborador_home' %}" class="nav-link">Logout</a></li>
           </ul>
         </div>
       </div>

@@ -6,10 +6,15 @@
 {% block content %}
 <section class="py-5" style="background-color: #eaf4e0;">
   <div class="container">
-    <p>
-      Quer saber mais sobre nossos produtos ou serviços?  
-      Envie-nos uma mensagem e retornaremos o mais breve possível.
-    </p>
+    <h2>Cadastrar novo cliente</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Cadastrar">
+    </form>
+
+    {% load static %}
+    link para {% static 'a.txt' %}
   </div>
 </section>
 {% endblock %}
