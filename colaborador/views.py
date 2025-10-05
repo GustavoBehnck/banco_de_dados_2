@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from . import forms as colaborador_forms
 from django_tables2 import SingleTableView
-from .models import Client, Vehicle
-from .tables import ClientTable, VehicleTable
+from .models import Client, Contract, Maintenance, Vehicle, VehicleModel
+from .tables import ClientTable, ContractTable, MaintenanceTable, VehicleModelTable, VehicleTable
 
 
 def home(request):
@@ -44,4 +44,22 @@ class ClientListView(SingleTableView):
 class VehicleListView(SingleTableView):
     model = Vehicle
     table_class = VehicleTable
+    template_name = "colaborador/list.html"
+
+
+class VehicleModelListView(SingleTableView):
+    model = VehicleModel
+    table_class = VehicleModelTable
+    template_name = "colaborador/list.html"
+
+
+class MaintenanceListView(SingleTableView):
+    model = Maintenance
+    table_class = MaintenanceTable
+    template_name = "colaborador/list.html"
+
+
+class ContractListView(SingleTableView):
+    model = Contract
+    table_class = ContractTable
     template_name = "colaborador/list.html"

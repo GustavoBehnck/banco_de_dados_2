@@ -94,7 +94,7 @@ class Vehicle(models.Model):
         db_table = "vehicles"
 
     def __str__(self):
-        return f"({self.id}) {self.model}, {self.chassis} - {self.status}"
+        return f"{self.chassis} - {self.model} (id {self.id}) "
 
 
 class Contract(models.Model):
