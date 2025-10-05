@@ -64,13 +64,13 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="veiculosDropdown">
                 <li><a class="dropdown-item" href="">Lista de veículos</a></li>
-                <li><a class="dropdown-item" href="">Cadastrar veículo</a></li>
+                <li><a class="dropdown-item" href="{% url 'colaborador_new_vehicle' %}">Cadastrar veículo</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="">Lista de modelos</a></li>
                 <li><a class="dropdown-item" href="{% url 'colaborador_new_vehicle_model' %}">Cadastrar modelo</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="">Lista de manutenções</a></li>
-                <li><a class="dropdown-item" href="">Cadastrar manutenção</a></li>
+                <li><a class="dropdown-item" href="{% url 'colaborador_new_maintenence' %}">Cadastrar manutenção</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="">Métricas gerais (Grafana/InfluxDB 2)</a></li>
                 <li><a class="dropdown-item" href="">Registros de auditoria</a></li>
@@ -81,6 +81,7 @@
               <ul class="dropdown-menu" aria-labelledby="contratosDropdown">
                 <li><a class="dropdown-item" href="">Lista de contratos</a></li>
                 <li><a class="dropdown-item" href="">Aprovar contratos</a></li>
+                <li><a class="dropdown-item" href="{% url 'colaborador_new_contract' %}">Novo contrato</a></li>
               </ul>
             </li>
 

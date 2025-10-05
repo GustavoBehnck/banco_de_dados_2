@@ -2,7 +2,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Row, Column, HTML
 
-from .models import Client, VehicleModel
+from .models import Client, Contract, Maintenance, Vehicle, VehicleModel
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
@@ -31,7 +31,7 @@ class NewClientForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            HTML("<h2>Cadastrar novo cliente</h2>"),
+            HTML("<h2>Cadastrar cliente</h2>"),
             *self.fields,
             Submit("submit", "Cadastrar"),
         )
@@ -51,7 +51,67 @@ class NewVehicleModelForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            HTML("<h2>Cadastrar novo modelo  de veículo</h2>"),
+            HTML("<h2>Cadastrar modelo de veículo</h2>"),
+            *self.fields,
+            Submit("submit", "Cadastrar"),
+        )
+
+
+class NewVehicleForm(forms.ModelForm):
+    class Meta:
+        model = Vehicle
+        fields = [
+            "chassis",
+            "model",
+            "observation",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML("<h2>Cadastrar veículo</h2>"),
+            *self.fields,
+            Submit("submit", "Cadastrar"),
+        )
+
+
+class NewMaintenanceForm(forms.ModelForm):
+    class Meta:
+        model = Maintenance
+        fields = [
+            "vehicle",
+            "date",
+            "reason",
+            "link_to_ticket",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML("<h2>Cadastrar manutenção</h2>"),
+            *self.fields,
+            Submit("submit", "Cadastrar"),
+        )
+
+
+
+class NewContractForm(forms.ModelForm):
+    class Meta:
+        model = Contract
+        fields = [
+            "client",
+            "start_date",
+            "end_date",
+            "lease_deed",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML("<h2>Cadastrar contrato</h2>"),
             *self.fields,
             Submit("submit", "Cadastrar"),
         )

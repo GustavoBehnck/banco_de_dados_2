@@ -12,3 +12,15 @@ def new_client(request):
 def new_vehicle_model(request):
     form = colaborador_forms.NewVehicleModelForm()
     return render(request, "colaborador/form.html", {"form": form})
+
+def new_vehicle(request):
+    form = colaborador_forms.NewVehicleForm()
+    return render(request, "colaborador/form.html", {"form": form})
+
+def new_maintenence(request):
+    form = colaborador_forms.NewMaintenanceForm()
+    return render(request, "colaborador/form.html", {"form": form})
+
+def new_contract(request):
+    form = colaborador_forms.NewContractForm()
+    return render(request, "colaborador/form.html", {"form": form})
