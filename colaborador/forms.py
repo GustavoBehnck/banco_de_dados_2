@@ -2,7 +2,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Row, Column, HTML
 
-from .models import Client
+from .models import Client, VehicleModel
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
@@ -32,6 +32,26 @@ class NewClientForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             HTML("<h2>Cadastrar novo cliente</h2>"),
+            *self.fields,
+            Submit("submit", "Cadastrar"),
+        )
+
+
+class NewVehicleModelForm(forms.ModelForm):
+    class Meta:
+        model = VehicleModel
+        fields = [
+            "type",
+            "battery_capacity",
+            "fabrication_year",
+            "charging_time",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML("<h2>Cadastrar novo modelo  de veículo</h2>"),
             *self.fields,
             Submit("submit", "Cadastrar"),
         )
