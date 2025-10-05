@@ -24,4 +24,5 @@ urlpatterns = [
     path("", views.index, name="home"),
     path("sobre/", views.about, name="about"),
     path("contato/", views.contact, name="contact"),
+    path("modelo/cadastrar", views.cadastrar_modelo, name="cadastrar_modelo"),
 ]

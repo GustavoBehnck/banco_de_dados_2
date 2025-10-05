@@ -12,3 +12,7 @@ def about(request):
 def contact(request):
     form = ContactForm(request.POST or None)
     return render(request, "colaborador/contact.html", {'form': form})
+
+def cadastrar_modelo(request):
+    form = ContactForm(request.POST or None)
+    return render(request, "colaborador/cadastrar_modelo.html", {'form': form})
