@@ -23,6 +23,7 @@ class Client(models.Model):
     def __str__(self):
         return self.trade_name
 
+
 class Farm(models.Model):
     STATUS_CHOICES = [
         ('active', 'Active'),
@@ -39,5 +40,34 @@ class Farm(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = "farms"
+    
     def __str__(self):
         return "self.name"
+
+
+class Model(models.Model):
+    """
+    Modelos de veículos
+    """
+    MODEL_CHOICES = [
+        ('planting', 'planting'),
+        ('spraying', 'Spraying'),
+        ('harvesting', 'Harvesting'),
+    ]
+
+    id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=20,choices=MODEL_CHOICES)
+    battery_capacity = models.FloatField(verbose_name="Capacidade da bateria (Wh)") # TODO revisit this
+    fabrication_year = models.IntegerField(verbose_name="Ano do modelo")
+    charging_time = models.FloatField(verbose_name="Tempo de recarga (h)", help_text="Tempo para completar um ciclo de carregamento, em horas")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "models"
+    
+    def __str__(self):
+        return f"{self.type} ({self.fabrication_year})"
+
