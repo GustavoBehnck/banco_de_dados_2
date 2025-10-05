@@ -22,3 +22,22 @@ class Client(models.Model):
     
     def __str__(self):
         return self.trade_name
+
+class Farm(models.Model):
+    STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('inactive', 'Inactive'),
+        ('suspended', 'Suspended'),
+    ]
+
+    name = models.CharField(max_length=255, verbose_name="Nome da fazenda")
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, related_name='farms', verbose_name="Propriedade de")
+    cep = models.CharField(max_length=20, verbose_name="CEP")
+    address = models.CharField(max_length=255, verbose_name="Endereço")
+    area = models.FloatField(verbose_name="Área (ha)", help_text="ha = hectares")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "self.name"
