@@ -39,7 +39,7 @@ erDiagram
 
     models {
         int id PK
-        ENUM types
+        ENUM type
         float batery_capacity
         int fabrication_year
         float charging_time
@@ -143,7 +143,7 @@ erDiagram
 | Column           | Type                                     | NotNull? | PK? | FK? | AutIncre? | Unique? |
 | ---------------- | ---------------------------------------- | -------- | --- | --- | --------- | ------- |
 | id               | int                                      | yes      | yes | no  | yes       | yes     |
-| types            | ENUM("planting","spraying","harvesting") | yes      | no  | no  | no        | no      |
+| type             | ENUM("planting","spraying","harvesting") | yes      | no  | no  | no        | no      |
 | batery_capacity  | float                                    | yes      | no  | no  | no        | no      |
 | fabrication_year | int                                      | yes      | no  | no  | no        | no      |
 | batery_capacity  | float                                    | yes      | no  | no  | no        | no      |
