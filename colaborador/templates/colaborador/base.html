@@ -51,8 +51,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Clientes</a></li>
-              <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="clientesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'about' %}">Clientes</a>
+              <ul class="dropdown-menu" aria-labelledby="contratosDropdown">
+                <li><a class="dropdown-item" href="">Lista de clientes</a></li>
+                <li><a class="dropdown-item" href="">Cadastrar cliente</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="veiculosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Veículos
               </a>
@@ -60,14 +66,36 @@
                 <li><a class="dropdown-item" href="">Lista de veículos</a></li>
                 <li><a class="dropdown-item" href="">Cadastrar veículo</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="">Categorias</a></li>
+                <li><a class="dropdown-item" href="">Lista de modelos</a></li>
+                <li><a class="dropdown-item" href="">Cadastrar modelo</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="">Lista de manutenções</a></li>
+                <li><a class="dropdown-item" href="">Cadastrar manutenção</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="">Métricas gerais (Grafana/InfluxDB 2)</a></li>
+                <li><a class="dropdown-item" href="">Registros de auditoria</a></li>
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Contratos</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Manutenções</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Estatísticas</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Auditoria</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="contratosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'about' %}">Contratos</a>
+              <ul class="dropdown-menu" aria-labelledby="contratosDropdown">
+                <li><a class="dropdown-item" href="">Lista de contratos</a></li>
+                <li><a class="dropdown-item" href="">Aprovar contratos</a></li>
+              </ul>
+            </li>
+
+            <!-- User dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Perfil
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><h6 class="dropdown-header">Flávio Monteiro</h6></li>
+                <li><a class="dropdown-item" href="">Perfil</a></li>
+                <li><a class="dropdown-item" href="">Configurações</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
           </ul>
         </div>
       </div>
