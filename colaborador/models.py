@@ -98,7 +98,7 @@ class Vehicle(models.Model):
 
 
 class Contract(models.Model):
-    lease_deed = models.TextField()
+    lease_deed = models.TextField(verbose_name="Texto do contrato")
     client = models.ForeignKey('Client', on_delete=models.CASCADE, related_name="contracts", verbose_name="Cliente")
     status = models.BooleanField(default=False, verbose_name="Está aprovado?")
     start_date = models.DateTimeField(verbose_name="Data de vigência")
@@ -145,7 +145,7 @@ class JobsLog(models.Model):
 
 
 class Maintenance(models.Model):
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='maintenances')
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='maintenances', verbose_name="Veículo")
     date = models.DateTimeField(verbose_name="Data de manutenção")
     reason = models.TextField(verbose_name="Justificativa")
     link_to_ticket = models.TextField(blank=True, null=True, verbose_name="Link do ticket", help_text="Esse é o ID do ticket no ServiceNow")
