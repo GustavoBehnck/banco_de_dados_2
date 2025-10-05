@@ -18,8 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from colaborador import views
+from . import views
 
 urlpatterns = [
-    path("", views.cadastrar_modelo, name="colaborador_home"),
+    path("", views.home, name="colaborador_home"),
+    path("clientes/cadastrar", views.new_client, name="colaborador_new_client"),
 ]
