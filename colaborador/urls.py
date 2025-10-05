@@ -25,6 +25,7 @@ urlpatterns = [
     path("clientes/", views.ClientListView.as_view(), name="colaborador_client_list"),
     path("clientes/cadastrar", views.new_client, name="colaborador_new_client"),
     path("veiculos/modelos/cadastrar", views.new_vehicle_model, name="colaborador_new_vehicle_model"),
+    path("veiculos/", views.VehicleListView.as_view(), name="colaborador_vehicle_list"),
     path("veiculos/cadastrar", views.new_vehicle, name="colaborador_new_vehicle"),
     path("manutencoes/cadastrar", views.new_maintenence, name="colaborador_new_maintenence"),
     path("contratos/cadastrar", views.new_contract, name="colaborador_new_contract"),
