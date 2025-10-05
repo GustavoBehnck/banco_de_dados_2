@@ -11,6 +11,11 @@
     <title>{% block title %}Grão-mestre Tratores{% endblock %}</title>
 
     <style>
+      html, body {
+        height: 100%; /* Ensure body fills the viewport */
+        display: flex;
+        flex-direction: column;
+      }
       body {
         font-family: 'Poppins', sans-serif;
         background-color: #f4f8f3;
@@ -24,6 +29,9 @@
       }
       .navbar-brand:hover, .nav-link:hover {
         color: #e3d985 !important;
+      }
+      main {
+        flex: 1; /* Main content grows to push footer down */
       }
       footer {
         background-color: #355e3b;
@@ -103,7 +111,9 @@
     </nav>
 
     <!-- Main content -->
-    {% block content %}{% endblock %}
+    <main>
+      {% block content %}{% endblock %}
+    </main>
 
     <!-- Footer -->
     <footer>
