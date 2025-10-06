@@ -3,8 +3,8 @@ from .models import Client, Contract, Maintenance, Vehicle, VehicleModel
 
 class ClientTable(tables.Table):
     edit = tables.TemplateColumn(
-        '<a href="{% url \'home\' %}" class="btn btn-sm btn-primary">Editar</a> '
-        '<a href="{% url \'home\' %}" class="btn btn-sm btn-outline-primary">Ver detalhes</a>',
+        '<a href="{% url \'colaborador_edit_client\' record.id %}" class="btn btn-sm btn-primary">Editar</a> '
+        '<a href="{% url \'colaborador_edit_client\' record.id %}" class="btn btn-sm btn-outline-primary">Ver detalhes</a>',
         orderable=False,
         verbose_name='Ações'
     )
@@ -17,7 +17,7 @@ class ClientTable(tables.Table):
 
 class VehicleTable(tables.Table):
     edit = tables.TemplateColumn(
-        '<a href="{% url \'home\' %}" class="btn btn-sm btn-primary">Editar</a>',
+        '<a href="{% url \'colaborador_edit_vehicle\' record.id %}" class="btn btn-sm btn-primary">Editar</a>',
         orderable=False,
         verbose_name='Ações'
     )
@@ -30,7 +30,7 @@ class VehicleTable(tables.Table):
 
 class VehicleModelTable(tables.Table):
     edit = tables.TemplateColumn(
-        '<a href="{% url \'home\' %}" class="btn btn-sm btn-primary">Editar</a>',
+        '<a href="{% url \'colaborador_edit_vehicle_model\' record.id %}" class="btn btn-sm btn-primary">Editar</a>',
         orderable=False,
         verbose_name='Ações'
     )
@@ -44,7 +44,7 @@ class VehicleModelTable(tables.Table):
 
 class MaintenanceTable(tables.Table):
     edit = tables.TemplateColumn(
-        '<a href="{% url \'home\' %}" class="btn btn-sm btn-primary">Editar</a>',
+        '<a href="{% url \'colaborador_edit_maintenence\' record.id  %}" class="btn btn-sm btn-primary">Editar</a>',
         orderable=False,
         verbose_name='Ações'
     )
@@ -58,8 +58,8 @@ class MaintenanceTable(tables.Table):
 
 class ContractTable(tables.Table):
     edit = tables.TemplateColumn(
-        '<a href="{% url \'home\' %}" class="btn btn-sm btn-primary">Editar</a> '
-        '<a href="{% url \'home\' %}" class="btn btn-sm btn-outline-primary">Ver detalhes</a>',
+        '<a href="{% url \'colaborador_edit_contract\' record.id %}" class="btn btn-sm btn-primary">Editar</a> '
+        '<a href="{% url \'colaborador_edit_contract\' record.id %}" class="btn btn-sm btn-outline-primary">Ver detalhes</a>',
         orderable=False,
         verbose_name='Ações'
     )

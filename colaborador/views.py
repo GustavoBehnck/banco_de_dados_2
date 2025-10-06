@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from . import forms as colaborador_forms
 from django_tables2 import SingleTableView
@@ -63,3 +63,33 @@ class ContractListView(SingleTableView):
     model = Contract
     table_class = ContractTable
     template_name = "colaborador/list.html"
+
+
+def edit_client(request, id):
+    client = get_object_or_404(Client, id=id)
+    form = colaborador_forms.EditClientForm(instance=client)
+    return render(request, "colaborador/form.html", {"form": form})
+
+
+def edit_vehicle_model(request, id):
+    vehicle_model = get_object_or_404(VehicleModel, id=id)
+    form = colaborador_forms.EditVehicleModelForm(instance=vehicle_model)
+    return render(request, "colaborador/form.html", {"form": form})
+
+
+def edit_vehicle(request, id):
+    vehicle = get_object_or_404(Vehicle, id=id)
+    form = colaborador_forms.EditVehicleForm(instance=vehicle)
+    return render(request, "colaborador/form.html", {"form": form})
+
+
+def edit_maintenence(request, id):
+    maintenance = get_object_or_404(Maintenance, id=id)
+    form = colaborador_forms.EditMaintenanceForm(instance=maintenance)
+    return render(request, "colaborador/form.html", {"form": form})
+
+
+def edit_contract(request, id):
+    contract = get_object_or_404(Contract, id=id)
+    form = colaborador_forms.EditContractForm(instance=contract)
+    return render(request, "colaborador/form.html", {"form": form})

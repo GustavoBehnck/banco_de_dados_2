@@ -37,6 +37,16 @@ class NewClientForm(forms.ModelForm):
         )
 
 
+class EditClientForm(NewClientForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            HTML("<h2>Editar cliente</h2>"),
+            *self.fields,
+            Submit("submit", "Editar"),
+        )
+
+
 class NewVehicleModelForm(forms.ModelForm):
     class Meta:
         model = VehicleModel
@@ -54,6 +64,16 @@ class NewVehicleModelForm(forms.ModelForm):
             HTML("<h2>Cadastrar modelo de veículo</h2>"),
             *self.fields,
             Submit("submit", "Cadastrar"),
+        )
+
+
+class EditVehicleModelForm(NewVehicleModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            HTML("<h2>Editar modelo de veículo</h2>"),
+            *self.fields,
+            Submit("submit", "Editar"),
         )
 
 
@@ -76,6 +96,17 @@ class NewVehicleForm(forms.ModelForm):
         )
 
 
+class EditVehicleForm(NewVehicleForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            HTML("<h2>Editar veículo</h2>"),
+            *self.fields,
+            Submit("submit", "Editar"),
+        )
+
+
+
 class NewMaintenanceForm(forms.ModelForm):
     class Meta:
         model = Maintenance
@@ -96,6 +127,15 @@ class NewMaintenanceForm(forms.ModelForm):
         )
 
 
+class EditMaintenanceForm(NewMaintenanceForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            HTML("<h2>Editar manutenção</h2>"),
+            *self.fields,
+            Submit("submit", "Editar"),
+        )
+
 
 class NewContractForm(forms.ModelForm):
     class Meta:
@@ -114,4 +154,14 @@ class NewContractForm(forms.ModelForm):
             HTML("<h2>Cadastrar contrato</h2>"),
             *self.fields,
             Submit("submit", "Cadastrar"),
+        )
+
+
+class EditContractForm(NewContractForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            HTML("<h2>Editar contrato</h2>"),
+            *self.fields,
+            Submit("submit", "Editar"),
         )
