@@ -2,6 +2,9 @@
 
 ## Database Schema Flowchart
 
+> [!IMPORTANT]
+> A modelagem em sí será apenas possível ser vista pelo github no documento [mysql_estrutura.md](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/docs/mysql_estrutura.md)
+
 ```mermaid
 erDiagram
     clients {

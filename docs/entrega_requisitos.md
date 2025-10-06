@@ -23,6 +23,7 @@ O outro foco dos `Tratores Grão Mestre` é evitar o trabalho desnecessário por
 
 ### Requisitos Funcionais
 
+- Haverá um site feito em Danjo com as principais funcionalidados das funções do banco relacional (MySQL)
 - Haverá uma plataforma de monitoramento em tempo real dos tratores
 - Deverá ser possível analisar estatísticas de consumo e danos dos tratores
 
