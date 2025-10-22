@@ -37,4 +37,5 @@ urlpatterns = [
     path("contratos/", views.ContractListView.as_view(), name="colaborador_contract_list"),
     path("contratos/cadastrar", views.new_contract, name="colaborador_new_contract"),
     path("contratos/<int:id>/editar", views.edit_contract, name="colaborador_edit_contract"),
+    path("dashboard", views.dashboard, name="dashboard"),
 ]
