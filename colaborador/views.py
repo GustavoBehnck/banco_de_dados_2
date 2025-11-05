@@ -93,3 +93,6 @@ def edit_contract(request, id):
     contract = get_object_or_404(Contract, id=id)
     form = colaborador_forms.EditContractForm(instance=contract)
     return render(request, "colaborador/form.html", {"form": form})
+
+def dashboard(request):
+    return render(request, "colaborador/dashboard.html")
