@@ -22,5 +22,5 @@ O outro foco dos `Tratores Grão Mestre` é evitar o trabalho desnecessário por
   - RA: `02310341`
 - Flávio Monteiro
   - RA: `02310091`
-- João Vichoviski
-  - RA: `023...`
+- João Victor Britto Vichoski Ben Carloto
+  - RA: `02310275`
