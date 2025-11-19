@@ -1,4 +1,4 @@
--- 1. Create `clients` first (referenced by farms and contracts)
+-- 1. Create `clients`
 CREATE TABLE clients (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cnpj VARCHAR(255) NOT NULL UNIQUE,
@@ -9,21 +9,21 @@ CREATE TABLE clients (
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- 2. Create `farms` (references clients)
+-- 2. Create `farms`
 CREATE TABLE farms (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     client_id INT NOT NULL,
-    cep VARCHAR(20) NOT NULL,
-    address VARCHAR(255) NULL, -- NotNull? was 'no'
+    address_id VARCHAR(255) NOT NULL,
     area FLOAT NOT NULL,
     status ENUM('active', 'inactive', 'suspended') NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (client_id) REFERENCES clients(id)
+    FOREIGN KEY (address_id) REFERENCES farm_addresses(id)
 );
 
--- 3. Create `models` (referenced by vehicles)
+-- 3. Create `models`
 CREATE TABLE models (
     id INT AUTO_INCREMENT PRIMARY KEY,
     type ENUM('planting', 'spraying', 'harvesting') NOT NULL,
@@ -34,19 +34,19 @@ CREATE TABLE models (
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- 4. Create `vehicles` (references models)
+-- 4. Create `vehicles`
 CREATE TABLE vehicles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     status ENUM('in use', 'ready', 'decommissioned', 'not ready') NOT NULL,
     chassis VARCHAR(255) NOT NULL,
-    observation TEXT NULL, -- NotNull? was 'no'
-    model INT NOT NULL,
+    observation TEXT,
+    model_id INT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (model) REFERENCES models(id)
+    FOREIGN KEY (model_id) REFERENCES models(id)
 );
 
--- 5. Create `contracts` (references clients)
+-- 5. Create `contracts`
 CREATE TABLE contracts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lease_deed TEXT NOT NULL,
@@ -59,38 +59,55 @@ CREATE TABLE contracts (
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
--- 6. Create `vehicles_contracted` (references contracts and vehicles)
+-- 6. Create `vehicles_contracted`
 CREATE TABLE vehicles_contracted (
     id INT AUTO_INCREMENT PRIMARY KEY,
     contract_id INT NOT NULL,
-    vehicle INT NOT NULL,
-    observation TEXT NULL, -- NotNull? was 'no'
+    vehicle_id INT NOT NULL,
+    observation TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (contract_id) REFERENCES contracts(id),
-    FOREIGN KEY (vehicle) REFERENCES vehicles(id)
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
 );
 
--- 7. Create `jobs_log` (references vehicles)
+-- 7. Create `jobs_log`
 CREATE TABLE jobs_log (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    vehicle_id INT NOT NULL, -- Corrected typo from 'vehile_id'
+    vehicle_id INT NOT NULL,
     started_date TIMESTAMP NOT NULL,
     finished_date TIMESTAMP NOT NULL,
-    observation TEXT NULL, -- NotNull? was 'no'
+    observation TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
 );
 
--- 8. Create `maintenances` (references vehicles)
+-- 8. Create `maintenances`
 CREATE TABLE maintenances (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    vehicle_id INT NOT NULL, -- Corrected typo from 'vehile_id'
+    vehicle_id INT NOT NULL,
     date TIMESTAMP NOT NULL,
     reason TEXT NOT NULL,
     link_to_ticket TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+);
+
+-- 9. Create `farm_addresses`
+CREATE TABLE farm_addresses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cep VARCHAR(20) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    number VARCHAR(50) NOT NULL,
+    complement VARCHAR(255) NULL,
+    neighborhood VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL DEFAULT 'Brazil',
+    latitude DECIMAL(10, 7) NULL,
+    longitude DECIMAL(10, 7) NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
