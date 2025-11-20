@@ -14,7 +14,9 @@ BUCKET = "YOUR_BUCKET"
 TOTAL_POINTS = 100_000
 BATCH_SIZE = 5_000
 
-# First value of the array is the default value and the next is the delta
+TRUCK_ID_RANGE = [0,100]
+
+# First value of the array is the default value and the next is the upper and lower limit
 # In a case of [100,10], the value can variate from 90 to 110
 POSSIBLE_COMPONENTS = {
     "cpu": {
@@ -76,13 +78,38 @@ POSSIBLE_COMPONENTS = {
     },
     "tires": {
         "temperature":       [330, 30],
-        "pressure":          [220000, 20000],  # Pascals (~32 psi)
-        "wear_level":        [20, 15],     # % wear
-        "traction":          [7, 3]        # arbitrary scale (higher = better)
+        "pressure":          [220000, 20000],   # Pascals (~32 psi)
+        "wear_level":        [20, 15],          # % wear
+        "traction":          [7, 3]             # arbitrary scale (higher = better)
     }
 }
 
+POSSIBLE_ENVIRONMENT = {
+    "temperature":  [293,10],       # Kelvin
+    "humidity":     [60,30],        # %
+    "luminosity":   [20_000,10_000] # Lux
+}
 
+POSSIBLE_VEHICLE_DATA = {
+    "velocity":     [6,3],  # m/s
+    "connectivity": [100,50]# ms
+    # "odometer": [,] # m
+    # "latitude": [,]
+    # "longitude": [,]
+}
+
+POSSIBLE_BATTERY = {
+    # "level":    []
+    "current":  [200,200]  # Ampere
+}
+
+START_DATE = datetime(2024,1,1)
+END_DATE = datetime(2024,12,30)
+
+START_HOUR = time(6,0,0)
+END_HOUR = time(17,0,0)
+
+current_day = START_DATE
 
 def generate_data():
     start_time = datetime.utcnow() - timedelta(days=1)
@@ -101,7 +128,30 @@ def generate_data():
         
         yield p
 
-def main():    
+def main():   
+    
+
+    while current_day <= END_DATE:
+        
+        # Create full datetime objects for the window of the current day
+        work_start = datetime.combine(current_day.date(), START_HOUR)
+        work_end = datetime.combine(current_day.date(), END_HOUR)
+        
+        # Set pointer to start of the work day
+        current_time = work_start
+        
+        # Inner Loop: Iterate through seconds
+        while current_time <= work_end:
+            print(f"Processing: {current_time}")
+            
+            # Do your logic here
+            
+            # Increment by 1 second
+            current_time += timedelta(seconds=1)
+        
+        # After inner loop finishes (5 PM reached), move to next day
+        current_day += timedelta(days=1)
+
     client = InfluxDBClient(url=URL, token=TOKEN, org=ORG)
 
     write_options = WriteOptions(
