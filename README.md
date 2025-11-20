@@ -12,7 +12,7 @@ Mais do que fornecer o hardware das máquinas, oferecemos o sistema que as geren
 
 O outro foco dos `Tratores Grão Mestre` é evitar o trabalho desnecessário por parte de contratantes e contratados. Os veículos são capazes de ler os dados analisados sobre seus componentes internos, antecipando e resolvendo problemas relacionados a falta de combustível, falhas internas e disponibilidade de recursos (sementes, água, fertilizante, etc).
 
-![tractor_image](/docs/images/interestelar%20tractor.png)
+![tractor_image](/database/docs/images/interestelar%20tractor.png)
 
 ## Integrantes
 
