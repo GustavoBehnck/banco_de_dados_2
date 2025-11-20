@@ -39,7 +39,7 @@ Eles são separados em 4 partes:
 - `fields`:
   - temperature [Kelvin]
   - power_consumption [Watts]
-  - current [Amperes]
+  - current [Milliampere]
   - impact_force [Newntons]
   - presure [Pa]
 
