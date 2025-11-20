@@ -19,11 +19,54 @@ Eles são separados em 4 partes:
 
 ## Measurement (tabelas)
 
-### `localization`
+### `components`
 
 - `tags`:
-  - vihicle
+  - vehicle - id
+  - name - possible values:
+    - cpu
+    - proximity_sensor
+    - impact_sensor
+    - gps_chip
+    - accelerometer
+    - power_supply_unit
+    - temperature_sensor
+    - humidity_sensor
+    - front_light
+    - engines
+    - breaks
+    - tires
 - `fields`:
+  - temperature [Kelvin]
+  - power_consumption [Watts]
+  - current [Amperes]
+  - impact_force [Newntons]
+  - presure [Pa]
+
+### `environment`
+
+- `tags`:
+  - vehicle - id
+- `fields`:
+  - temperature [Kelvin]
+  - humidity [%]
+  - luminosity [lux]
+
+### `vehicle_data`
+
+- `tags`:
+  - vehicle - id
+- `fields`:
+  - velocity [m/s]
+  - connectivity [ms]
+  - odometer [m]
   - latitude
   - longitude
-  - altitude
+
+### `battery`
+
+- `tags`:
+  - vehicle - id
+- `fields`:
+  - level [%]
+  - current [Amperes]
