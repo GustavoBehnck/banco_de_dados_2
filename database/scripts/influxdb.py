@@ -22,10 +22,6 @@ def generate_data():
     for i in range(TOTAL_POINTS):
         point_time = start_time + timedelta(seconds=i)
         
-        # Create a Point object
-        # Measurement: "sensor_data"
-        # Tags: Metadata (indexed)
-        # Fields: Actual data (not indexed)
         p = Point("sensor_data") \
             .tag("location", random.choice(locations)) \
             .tag("host", f"host_{random.randint(1, 5)}") \
