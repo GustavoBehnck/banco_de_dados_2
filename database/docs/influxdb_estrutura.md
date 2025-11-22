@@ -39,7 +39,7 @@ Eles são separados em 4 partes:
 - `fields`:
   - temperature [Kelvin]
   - power_consumption [Watts]
-  - current [Amperes]
+  - current [Milliampere]
   - impact_force [Newntons]
   - presure [Pa]
 
@@ -60,8 +60,6 @@ Eles são separados em 4 partes:
   - velocity [m/s]
   - connectivity [ms]
   - odometer [m]
-  - latitude
-  - longitude
 
 ### `battery`
 
