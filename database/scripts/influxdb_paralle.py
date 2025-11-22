@@ -11,7 +11,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 URL = "http://localhost:8086"
 TOKEN = "MyInitialAdminToken0=="
 ORG = "docs"
-BUCKET = "testing"
+BUCKET = "teste"
 
 TRUCK_ID_RANGE = [1, 6] 
 
@@ -177,6 +177,8 @@ class Truck:
 
         return points
 
+ALL_POINT_INSERTED = 0
+
 def simulate_single_truck(truck_id):
     print(f"Process started for Truck ID: {truck_id}")
     try:
@@ -211,6 +213,7 @@ def simulate_single_truck(truck_id):
             current_day += timedelta(days=1)
         client.close()
         print(f"Truck {truck_id} finished! Generated {total_points_generated} points.")
+        ALL_POINT_INSERTED+=total_points_generated
         return total_points_generated
     except Exception as e:
         print(f"Error Type: {type(e).__name__}")
@@ -226,5 +229,5 @@ if __name__ == "__main__":
         print(f"Launching {len(truck_ids)} parallel processes...")
         results = pool.map(simulate_single_truck, truck_ids)
 
-    print(f"\nSimulation Complete in {t_lib.time() - start_time:.2f} seconds.")
+    print(f"\nSimulation Complete in {t_lib.time() - start_time:.2f} seconds. with total point of {ALL_POINT_INSERTED}")
     print(f"Total Points Across Fleet: {sum(results)}")
