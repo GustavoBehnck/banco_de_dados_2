@@ -60,8 +60,6 @@ Eles são separados em 4 partes:
   - velocity [m/s]
   - connectivity [ms]
   - odometer [m]
-  - latitude
-  - longitude
 
 ### `battery`
 

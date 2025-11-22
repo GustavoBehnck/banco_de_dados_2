@@ -4,19 +4,21 @@ import copy
 import multiprocessing
 import time as t_lib
 from datetime import datetime, timedelta, time
-# influx
+
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-# --- CONFIGURATION ---
 URL = "http://localhost:8086"
 TOKEN = "MyInitialAdminToken0=="
-ORG = "YOUR_ORG"
-BUCKET = "YOUR_BUCKET"
+ORG = "docs"
+BUCKET = "testing"
 
-TRUCK_ID_RANGE = [0, 5] # Simulating truck IDs 0 to 4
+TRUCK_ID_RANGE = [1, 6] 
 
-# --- DATA TEMPLATES (CONSTANTS) ---
+START_DATE = datetime(2025, 1, 1)
+END_DATE = datetime(2025, 6, 1)
+START_HOUR = time(6, 0, 0)
+END_HOUR = time(17, 0, 0)
 
 TEMPLATE_COMPONENTS = {
     "cpu": {
@@ -91,8 +93,8 @@ TEMPLATE_ENVIRONMENT = {
 }
 
 TEMPLATE_VEHICLE_DATA = {
-    "velocity":     [0, 9, 3],      # m/s
-    "connectivity": [20, 200, 50]    # ms
+    "velocity":     [0, 9, 3],
+    "connectivity": [20, 200, 50]
 }
 
 TEMPLATE_BATTERY = {
@@ -106,8 +108,6 @@ def generate_next_value(values_list):
     new_val = current_v + change
     return float(max(min_v, min(max_v, new_val)))
 
-
-# --- TRUCK CLASS ---
 class Truck:
     def __init__(self, truck_id):
         self.truck_id = truck_id
@@ -124,114 +124,107 @@ class Truck:
         self.battery_data = copy.deepcopy(TEMPLATE_BATTERY)
 
     def simulate_step(self, timestamp):
-        """
-        Updates the state of the truck and returns a list of InfluxDB Points.
-        """
+
+        PointClass = Point 
+
         points = []
         if self.battery_level <= 0.5:
             return points
 
-        #? 1. Components Measurement
+        # 1. Components
         for component_name, sensors in self.components.items():
-            p = Point("components") \
-                    .tag("truck_id", str(self.truck_id)) \
-                    .tag("name", component_name) \
-                    .time(timestamp)            
+            p = PointClass("components").tag("truck_id", str(self.truck_id)).tag("name", component_name).time(timestamp)            
             for sensor_name, values in sensors.items():
                 new_val = generate_next_value(values)
                 values[-1] = new_val 
                 p.field(sensor_name, new_val)
-            
             points.append(p)
 
-        #? 2. Environment Measurement
-        p_env = Point("environment").tag("truck_id", str(self.truck_id)).time(timestamp)
+        # 2. Environment
+        p_env = PointClass("environment").tag("truck_id", str(self.truck_id)).time(timestamp)
         for sensor_name, values in self.environment.items():
             new_val = generate_next_value(values)
             values[-1] = new_val
             p_env.field(sensor_name, new_val)
         points.append(p_env)
 
-        #? 3. Vihicle Measurement
-        p_veh = Point("vehicle_data").tag("truck_id", str(self.truck_id)).time(timestamp)
-        
-
+        # 3. Vehicle
+        p_veh = PointClass("vehicle_data").tag("truck_id", str(self.truck_id)).time(timestamp)
         for sensor_name, values in self.vehicle_data.items():
             new_val = generate_next_value(values)
             values[-1] = new_val
             p_veh.field(sensor_name, new_val)
-            
-
-        self.odometer += random.uniform(1, 10)
-        p_veh.field("odometer", self.odometer)
         
+        self.odometer += random.uniform(1, 5)
+        p_veh.field("odometer", float(self.odometer))
         points.append(p_veh)
 
-
-        #? 4. Battery Measurement
-        p_bat = Point("battery").tag("truck_id", str(self.truck_id)).time(timestamp)
-
+        # 4. Battery
+        p_bat = PointClass("battery").tag("truck_id", str(self.truck_id)).time(timestamp)
         for sensor_name, values in self.battery_data.items():
             new_val = generate_next_value(values)
             values[-1] = new_val
             p_bat.field(sensor_name, new_val)
             
         if self.battery_level > 0:
-            battery_down = random.uniform(0.001, 0.15) 
+            battery_down = random.uniform(0.005, 0.15) 
             self.battery_level -= battery_down
         else:
             self.battery_level = 0
 
-        p_bat.field("battery_level", self.battery_level)
+        p_bat.field("battery_level", float(self.battery_level))
         points.append(p_bat)
 
         return points
 
-# --- MAIN EXECUTION ---
-def main():
-    #! client = InfluxDBClient(url=URL, token=TOKEN, org=ORG)
-    #! write_api = client.write_api(write_options=SYNCHRONOUS)
-
-    fleet = [Truck(i) for i in range(TRUCK_ID_RANGE[0], TRUCK_ID_RANGE[1])]
-
-    current_day = datetime(2025, 1, 1)
-    end_date = datetime(2025, 2, 1)
-
-    start_hour = time(6, 0, 0)
-    end_hour = time(17, 0, 0)
-
-    # print(f"Starting simulation for {len(fleet)} trucks...")
-
-    while current_day <= end_date:
-        current_time = datetime.combine(current_day.date(), start_hour)
-        work_end = datetime.combine(current_day.date(), end_hour)
+def simulate_single_truck(truck_id):
+    print(f"Process started for Truck ID: {truck_id}")
+    try:
+        my_truck = Truck(truck_id)
         
-        # print(f"--- STARTING DAY: {current_day.date()} ---")
-        while current_time <= work_end:
+        client = InfluxDBClient(url=URL, token=TOKEN, org=ORG)
+        write_api = client.write_api(write_options=SYNCHRONOUS)
+
+        current_day = START_DATE
+        
+        total_points_generated = 0
+
+        while current_day <= END_DATE:
+            current_time = datetime.combine(current_day.date(), START_HOUR)
+            work_end = datetime.combine(current_day.date(), END_HOUR)
             
-            batch_points = []
-            
-            for truck in fleet:
-                truck_points = truck.simulate_step(current_time)
-                if truck_points:
-                    batch_points.extend(truck_points)
-            
-            # --- WRITE TO INFLUX ---
-            if batch_points:
-                # print(f"\n--- Time: {current_time} | Total Points: {len(batch_points)} ---")
+            daily_points = []
+
+            while current_time <= work_end:
+                new_points = my_truck.simulate_step(current_time)
+                if new_points:
+                    daily_points.extend(new_points)
                 
-                for p in batch_points:
-                    print(p.to_line_protocol())
-                #! write_api.write(bucket=BUCKET, org=ORG, record=batch_points)
-            # else:
-            #     print(f"Time: {current_time.time()} | All batteries empty.")
+                current_time += timedelta(seconds=20)
+            
+            if daily_points:
+                write_api.write(bucket=BUCKET, org=ORG, record=daily_points)
 
-            current_time += timedelta(seconds=10)
+            total_points_generated += len(daily_points)
 
-        # print("End of shift. Recharging Fleet...")
-        for truck in fleet:
-            truck.recharge()
-        current_day += timedelta(days=1)
+            my_truck.recharge()
+            current_day += timedelta(days=1)
+        client.close()
+        print(f"Truck {truck_id} finished! Generated {total_points_generated} points.")
+        return total_points_generated
+    except Exception as e:
+        print(f"Error Type: {type(e).__name__}")
+        print(f"Error Message: {e}")
+        return 0
 
 if __name__ == "__main__":
-    main()
+    start_time = t_lib.time()
+    
+    truck_ids = range(TRUCK_ID_RANGE[0], TRUCK_ID_RANGE[1])
+    
+    with multiprocessing.Pool() as pool:
+        print(f"Launching {len(truck_ids)} parallel processes...")
+        results = pool.map(simulate_single_truck, truck_ids)
+
+    print(f"\nSimulation Complete in {t_lib.time() - start_time:.2f} seconds.")
+    print(f"Total Points Across Fleet: {sum(results)}")
