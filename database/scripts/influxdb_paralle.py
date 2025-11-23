@@ -13,12 +13,12 @@ TOKEN = "MyInitialAdminToken0=="
 ORG = "docs"
 BUCKET = "test"
 
-TRUCK_ID_RANGE = [1, 11] 
+TRUCK_ID_RANGE = [1, 21] 
 
-START_DATE = datetime(2025, 1, 1)
-END_DATE = datetime(2025, 6, 1)
+START_DATE = datetime(2025, 6, 1)
+END_DATE = datetime(2025, 11, 26)
 START_HOUR = time(6, 0, 0)
-END_HOUR = time(17, 0, 0)
+END_HOUR = time(16, 0, 0)
 
 TEMPLATE_COMPONENTS = {
     "cpu": {
