@@ -12,6 +12,8 @@ O projeto é divido em algumas partes, a baixo há a explicação dele por compl
     - [SQL de criação do banco](#sql-de-criação-do-banco)
     - [Script de inserção de dados no InfluxDB](#script-de-inserção-de-dados-no-influxdb)
     - [Grafana - Visualização do InfluxDB](#grafana---visualização-do-influxdb)
+    - [Inserção de dados no MySQL](#inserção-de-dados-no-mysql)
+    - [Site em Django](#site-em-django)
 
 
 ## Tema: `Telemetria de Veículos Autônomos`
@@ -61,7 +63,7 @@ Nesse arquivo é onde organizamos como seria a estrutura do banco de dados relac
 
 ### SQL de criação do banco
 
-Localizado em [database/scripts/create_tables.sql](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/scripts/create_tables.sql)
+Localizado em [database/scripts/create_tables.sql](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/mysql_scripts/create.sql)
 
 Código em sql da criação do nosso banco
 
@@ -69,11 +71,11 @@ Código em sql da criação do nosso banco
 
 Primeiramente foi criado um script de insersão de dados no InfluxDB de forma serial.
 
-Localizado em [database/scripts/influxdb.py](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/scripts/influxdb.py)
+Localizado em [database/scripts/influxdb.py](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/influx_scripts/influxdb.py)
 
 Porém, para a quantidade de dados que desejávamos inserir, fazer a inserção de forma serial é inviável. Por conta disso criamos um script de inserção de dados de forma paralela, isso é possível por que cada inserção de um trator é idependente entre si, sendo possível criar um thread para cara `truck_id`
 
-Localizado em [database/scripts/influxdb_paralle.py](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/scripts/influxdb_paralle.py)
+Localizado em [database/scripts/influxdb_paralle.py](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/influx_scripts/influxdb_paralle.py)
 
 Com esse novo script, foi possível fazer a seguinte inserção no banco:
 
@@ -103,7 +105,7 @@ Simulation Complete in 1001.10 seconds.
 Total Points Across Fleet: 65517375
 ```
 
-(Arquivo de log completo em [database/scripts/insert_20_trucks_production.log](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/scripts/insert_20_trucks_production.log))
+(Arquivo de log completo em [database/scripts/insert_20_trucks_production.log](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/influx_scripts/insert_20_trucks_production.log))
 
 Totalizando mais de 65.5 **Milhões** de dados inseridos no banco em 16.685 minutos, isso é aproximadamente `65445.4` inserções por segundo
 
@@ -111,6 +113,50 @@ Totalizando mais de 65.5 **Milhões** de dados inseridos no banco em 16.685 minu
 
 Para a visualizações desses 65.5 milhões de dados, foi utilizado o Grafana, um software open-source para criação de dashboards, muito utilizado para facilitar a visualizações de grandes volumes de dados.
 
-O Grafana de produção pode ser acesso por qualquer um na URL [httpextensao.sjc.br:3000](http://extensao.sjc.br:3000/d/fffce2ab-b3e6-48ed-a4d6-0013458e97cc/grao-mestre-dashboard?orgId=1&from=1763434800000&to=1763866799000&var-measurement=battery&var-field=current&var-truck=1&var-truck=12&showCategory=Panel+options&theme=light)
+O Grafana de produção pode ser acesso por qualquer um na URL [extensao.sjc.br:3000](http://extensao.sjc.br:3000/d/fffce2ab-b3e6-48ed-a4d6-0013458e97cc/grao-mestre-dashboard?orgId=1&from=1763434800000&to=1763866799000&var-measurement=battery&var-field=current&var-truck=1&var-truck=12&showCategory=Panel+options&theme=light)
 
 Ou pelo site em Django: [extensao.sjc.br:8001/colaborador/dashboard](http://extensao.sjc.br:8001/colaborador/dashboard)
+
+### Inserção de dados no MySQL
+
+Todos os arquivos relacinados à inserção de dados no banco estão armazenados dentro da pasta [database/mysql_scripts](https://github.com/GustavoBehnck/banco_de_dados_2/tree/main/database/mysql_scripts).
+
+Primeiramente foi criado um arquivo SQL para a inserção da tabelas de `clients` feito manualmente.
+
+Porém, após notarmos que isso demoraria mais tempo do que gostaríamos, criamos um script template servindo de base para os outros scripts de cada tabelas.
+
+Além disso, criamos um script feito em bash para facilitar a criação, destruição e validação do banco sempre quando formos testar os scripts. Localizados em [database/mysql_scripts/config](https://github.com/GustavoBehnck/banco_de_dados_2/tree/main/database/mysql_scripts/config).
+
+### Site em Django
+
+Como dito na [Estrutura do projeto](#estrutura-do-projeto), qualquer arquivo que não está contido na pasta `database/` está relacionado a interface feita em Django.
+
+A interface criado é apenas para fins demostrativos, não tem como objetivo efetivamente ser funcional.
+
+É possível acessa a página web a partir da URL [extensao.sjc.br:8001](http://extensao.sjc.br:8001/). Por questões de praticidade, reaproveitamos nossa já estabelicida VPS de extensão para hostiar o site.
+
+É possível rodar o projeto localmente usando a documentação oficial do Django: 
+
+```bash
+# Close o projeto e entre dentro dele
+git clone <ESTE_REPO>
+cd <ESTE_REPO>
+
+# Crie seu ambiente de python
+python -m venv .venv
+
+# Inicialize o ambiente em python
+# Windowns:
+.\venv\Scripts\activate.bat
+# Linux
+source .venv/bin/activate
+
+# Instale as bibliotecas requeridas
+pip install -r requirements.txt
+
+# Rode o projeto
+python manage.py runserver #127.0.0.1:8000s
+```
+
+> [!TIP]
+> Para sair do ambiente do python, use `deactivate`
