@@ -1,0 +1,45 @@
+Launching 20 parallel processes...
+Process started for Truck ID: 1
+Process started for Truck ID: 2
+Process started for Truck ID: 3
+Process started for Truck ID: 4
+Process started for Truck ID: 5
+Process started for Truck ID: 6
+Process started for Truck ID: 7
+Process started for Truck ID: 8
+Process started for Truck ID: 9
+Process started for Truck ID: 10
+Process started for Truck ID: 11
+Process started for Truck ID: 12
+Truck 6 finished! Generated 3448815 points.
+Process started for Truck ID: 13
+Error Type: ReadTimeoutError
+Error Message: HTTPConnectionPool(host='extensao.sjc.br', port=8086): Read timed out. (read timeout=0)
+Process started for Truck ID: 14
+Truck 12 finished! Generated 3447660 points.
+Process started for Truck ID: 15
+Truck 8 finished! Generated 3441915 points.
+Process started for Truck ID: 16
+Truck 3 finished! Generated 3445290 points.
+Process started for Truck ID: 17
+Truck 11 finished! Generated 3447900 points.
+Process started for Truck ID: 18
+Truck 10 finished! Generated 3451665 points.
+Process started for Truck ID: 19
+Truck 9 finished! Generated 3450045 points.
+Process started for Truck ID: 20
+Truck 5 finished! Generated 3446070 points.
+Truck 4 finished! Generated 3452130 points.
+Truck 7 finished! Generated 3446385 points.
+Truck 1 finished! Generated 3447225 points.
+Truck 2 finished! Generated 3444165 points.
+Truck 18 finished! Generated 3455880 points.
+Truck 16 finished! Generated 3441720 points.
+Truck 20 finished! Generated 3446520 points.
+Truck 19 finished! Generated 3449865 points.
+Truck 15 finished! Generated 3452760 points.
+Truck 14 finished! Generated 3448170 points.
+Truck 17 finished! Generated 3453195 points.
+
+Simulation Complete in 1001.10 seconds.
+Total Points Across Fleet: 65517375

@@ -24,7 +24,7 @@ O link para o projeto já existente em Django é o [extensao.sjc.br:8001](http:/
 
 A home page se constituída por uma breve explicação da compania e seus ideias como na imagem a seguir:
 
-![home_page](/docs/images/home_page.png)
+![home_page](/database/docs/images/home_page.png)
 
 Além de incluir opções de contato
 
@@ -32,11 +32,11 @@ Além de incluir opções de contato
 
 A interface do colaborador terá disponível o cadastro e listagem dos tratores e sua edição como na imagem a seguir:
 
-![veículos_colaboradore](/docs/images/veículos_colaborador.png)
+![veículos_colaboradore](/database/docs/images/veículos_colaborador.png)
 
 Também sendo possível editar e adicionar novos modelos dos tratores:
 
-![modelos_colaboradores](/docs/images/modelos_colaboradores.png)
+![modelos_colaboradores](/database/docs/images/modelos_colaboradores.png)
 
 Além disso ele terá acesso a um painel de métricas em tempo real (ainda não implementado).
 
