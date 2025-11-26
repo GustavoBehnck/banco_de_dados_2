@@ -22,10 +22,8 @@ CREATE TABLE farm_addresses (
     complement VARCHAR(255) NULL,
     neighborhood VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
-    subdivision VARCHAR(255),
+    country_subdivision VARCHAR(255),
     country VARCHAR(255) NOT NULL DEFAULT 'Brazil',
-    latitude DECIMAL(10, 7) NULL,
-    longitude DECIMAL(10, 7) NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

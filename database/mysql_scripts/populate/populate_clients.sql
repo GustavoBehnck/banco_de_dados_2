@@ -1,6 +1,5 @@
 -- 1. Populate `clients`
 INSERT INTO clients (cnpj, status, trade_name, company_name, created_at, updated_at) VALUES
--- 1
 ('37.471.650/0001-02','active','Agro Horizonte','Agro Horizonte S.A.','2018-03-10 11:22:00','2018-03-10 11:22:00'),
 ('89.517.843/0001-90','active','Fazendas União','Fazendas União do Cerrado Ltda','2019-07-18 09:44:21','2019-07-18 09:44:21'),
 ('52.936.178/0001-84','active','Campo Verde','Campo Verde Agroindustrial Ltda','2020-01-29 16:12:09','2020-01-29 16:12:09'),
