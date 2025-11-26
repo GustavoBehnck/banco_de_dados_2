@@ -8,80 +8,93 @@
 ```mermaid
 erDiagram
     clients {
-        int id PK
-        VARCHAR cnpj "Unique"
-        ENUM status
-        VARCHAR trade_name
-        VARCHAR company_name "Unique"
+        INT id PK
+        VARCHAR(255) cnpj "Unique"
+        ENUM status "active, inactive, suspended"
+        VARCHAR(255) trade_name
+        VARCHAR(255) company_name "Unique"
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    farm_addresses {
+        INT id PK
+        VARCHAR(20) cep
+        VARCHAR(255) street
+        VARCHAR(50) number
+        VARCHAR(255) complement "Nullable"
+        VARCHAR(255) neighborhood
+        VARCHAR(255) city
+        VARCHAR(255) country_subdivision "Nullable"
+        VARCHAR(255) country
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
 
     farms {
-        int id PK
-        VARCHAR name
-        int client_id FK
-        VARCHAR cep
-        VARCHAR address
-        float area
-        ENUM status
+        INT id PK
+        VARCHAR(255) name
+        INT client_id FK
+        INT address_id FK
+        FLOAT area
+        ENUM status "active, inactive, suspended"
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    models {
+        INT id PK
+        ENUM type "planting, spraying, harvesting"
+        FLOAT batery_capacity
+        INT fabrication_year
+        FLOAT charging_time
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    vehicles {
+        INT id PK
+        ENUM status "in use, ready, decom, not ready"
+        VARCHAR(255) chassis
+        TEXT observation "Nullable"
+        INT model_id FK
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
 
     contracts {
-        int id PK
+        INT id PK
         TEXT lease_deed
-        int client_id FK
-        boolean status
+        INT client_id FK
+        BOOLEAN status
         TIMESTAMP start_date
         TIMESTAMP end_date
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
 
-    models {
-        int id PK
-        ENUM type
-        float batery_capacity
-        int fabrication_year
-        float charging_time
-        TIMESTAMP created_at
-        TIMESTAMP updated_at
-    }
-
-    vehicles {
-        int id PK
-        ENUM status
-        VARCHAR chassis
-        TEXT observation
-        int model FK
-        TIMESTAMP created_at
-        TIMESTAMP updated_at
-    }
-
-    vehicles_contracted {
-        int id PK
-        int contract_id FK
-        int vehicle_id FK
-        TEXT observation
+    vehicles_contracts {
+        INT id PK
+        INT contract_id FK
+        INT vehicle_id FK
+        TEXT observation "Nullable"
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
 
     jobs_log {
-        int id PK
-        int vehicle_id FK
+        INT id PK
+        INT vehicle_id FK
         TIMESTAMP started_date
         TIMESTAMP finished_date
-        TEXT observation
+        TEXT observation "Nullable"
         TIMESTAMP created_at
         TIMESTAMP updated_at
     }
 
     maintenances {
-        int id PK
-        int vehicle_id FK
+        INT id PK
+        INT vehicle_id FK
         TIMESTAMP date
         TEXT reason
         TEXT link_to_ticket
@@ -89,15 +102,18 @@ erDiagram
         TIMESTAMP updated_at
     }
 
+    %% Relacionamentos
     clients ||--o{ farms : "has"
     clients ||--o{ contracts : "signs"
+    
+    farm_addresses ||--o{ farms : "located at"
 
-    models ||--o{ vehicles : "is model of"
+    models ||--o{ vehicles : "defines specs for"
 
-    contracts }o--|| vehicles_contracted : "lists"
-    vehicles }o--|| vehicles_contracted : "is listed in"
+    contracts ||--o{ vehicles_contracts : "lists"
+    vehicles ||--o{ vehicles_contracts : "is listed in"
 
-    vehicles ||--o{ jobs_log : "has"
+    vehicles ||--o{ jobs_log : "performs"
     vehicles ||--o{ maintenances : "undergoes"
 ```
 
