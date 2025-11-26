@@ -127,6 +127,8 @@ Porém, após notarmos que isso demoraria mais tempo do que gostaríamos, criamo
 
 Além disso, criamos um script feito em bash para facilitar a criação, destruição e validação do banco sempre quando formos testar os scripts. Localizados em [database/mysql_scripts/config](https://github.com/GustavoBehnck/banco_de_dados_2/tree/main/database/mysql_scripts/config).
 
+Para facilitar a visualização também foi criado uma view para visualizar os contratos ativos no momento([database/mysql_scripts/active_contracts_view.sql](https://github.com/GustavoBehnck/banco_de_dados_2/blob/main/database/mysql_scripts/active_contracts_view.sql)).
+
 ### Site em Django
 
 Como dito na [Estrutura do projeto](#estrutura-do-projeto), qualquer arquivo que não está contido na pasta `database/` está relacionado a interface feita em Django.
