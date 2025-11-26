@@ -2,6 +2,7 @@
 1. Atualizar a documentação da estrutura do mariadb (quando encerrar)
 2. Atualizar o README.md com a estrutura do banco e sobre os scripts
 3. Criação dos scripts de mysql para popular o banco
+4. Atualizar os caminhos dos scripts após as mudanças de pastas
 
 # Gustavo
 1. Criação dos scripts do InfluxDB

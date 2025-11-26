@@ -16,9 +16,10 @@ case $action in
 		;;
 	p)
 		echo "Populating database..."
-		mariadb grao_mestre_db < "$base_dir_path/populate.sql"
+		"$base_dir_path/populate.sh"
 		echo "Showing result..."
-		mariadb grao_mestre_db -e "SELECT * from returns;"
+		echo "Fix results return later..."
+		# mariadb grao_mestre_db -e "SELECT * from returns;"
 		;;
 	count)
 		echo "Counting rows of each table..."

@@ -80,8 +80,8 @@ CREATE TABLE contracts (
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
--- 7. Create `vehicles_contracted`
-CREATE TABLE vehicles_contracted (
+-- 7. Create `vehicles_contracts`
+CREATE TABLE vehicles_contracts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     contract_id INT NOT NULL,
     vehicle_id INT NOT NULL,
